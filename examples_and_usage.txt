@@ -1,0 +1,53 @@
+PortCTL
+
+## Examples and usage
+
+Extending on PortCTL? Glad to hear! Extending on the billing panel is fairly easy, first decide what you need to access.
+
+Is it going to be a admin panel module? Client area? Once you decide, create the needed files.
+
+Database Access, Configuration Access, and IP fixing. These three libraries are the core required libraries to function. The IP fixing class is designed to fix any issues with Cloudflare and obtaining the user IP address.
+
+Now, admin and client panel have different session identifications. 
+Session "portcust" is used for the customer panel, and portctl is used for the administration backend.
+
+Additionally, if adding onto the administration panel, and only want superusers to have access? Simply check if the session "ACL" is equal to 1.
+
+Example of ACL checking:
+<?php
+if($_SESSION['acl'] == "1")
+{
+	// My Code Here
+}
+else
+{
+	echo "Sorry, you need to be a superuser to access this file!";
+}
+?>
+
+## Example Modules
+
+Making our example file, example.php in the clients folder, to create the page starting just add:
+<?php
+session_start();
+if(!isset($_SESSION['portcust']))
+{
+  header('Location: login.php');
+  echo "Doh! You need to login!";
+  exit();
+}
+require_once('../includes/database.php'); $db = database();
+require_once('../includes/getconfig.php');
+require_once('../includes/ipfunctions.php'); handleCFIPs();
+echo "Hey there! Your customer ID is ".$_SESSION['portcust'];
+?>
+
+## Database Access
+To access the database simply include the database file, located in the includes folder, then type:
+$db = database();
+
+By doing such, database function will return a new PDO instance.
+
+## Support
+Need help? You can email our team at portctl@hotmail.com
+Please note: The hotmail email address above simply redirects/forwards all emails automatically to our core development team.
