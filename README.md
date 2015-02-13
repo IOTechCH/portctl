@@ -11,5 +11,5 @@ https://vpsboard.com/topic/6348-portctl-systems-billing-software/
 http://lowendtalk.com/discussion/43839/portctl-open-source-billing-software
 
 ## Thanks
-Special thanks to ZXPlay (zxplay.co.uk) for sponsoring a server to host demos!
-
+Special thanks to ZXPlay (zxplay.co.uk) for sponsoring a server to host demo!
+Website Sponsored by Psychz Networks
