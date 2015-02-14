@@ -343,6 +343,10 @@ require_once('../includes/hooks.php'); $hooks = new Hook();
 												$login_email = $row['order_email'];
 												$order_pid = $row['order_pid'];
 											}
+											if(!filter_var($login_email, FILTER_VALIDATE_EMAIL))
+											{
+												exit("Cannot process request, the customer email contains invalid characters.");
+											}
 											$to = $login_email;
 											$subject = $sitename." Account Details";
 											$sql = "SELECT * FROM `customers` WHERE `customer_email` = ?";
@@ -392,7 +396,10 @@ require_once('../includes/hooks.php'); $hooks = new Hook();
 										{
 											foreach($query as $row)
 											{
-												echo 'ORDER # '.$row['id'].'<br>Email on file: '.$row['order_email'].'<br>';
+												if(filter_var($row['order_email'], FILTER_VALIDATE_EMAIL))
+												{
+													echo 'ORDER # '.$row['id'].'<br>Email on file: '.$row['order_email'].'<br>';
+												}
 											}
 											echo '<form method="POST" action="pending.php?oid='.$oid.'">';
 											echo '<input type="submit" name="submit" value="Send client login credentials" class="btn btn-primary">';

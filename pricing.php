@@ -216,6 +216,10 @@ require_once('includes/getconfig.php');
 									{
 										// SQL query to add order to be processed
 										$email = $_POST['email']; if(empty($email) or !isset($email)) { echo "Email not supplied or not valid."; return; }
+										if(!filter_var($email, FILTER_VALIDATE_EMAIL))
+										{
+											exit("Email format invalid.");
+										}
 										$data = array($email, $pid);
 										$query = $db->prepare('INSERT INTO `orders`(`id`, `order_email`, `order_pid`, `order_status`) VALUES (NULL, ?, ?,"0")');
 										$query->execute($data);
