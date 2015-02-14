@@ -220,11 +220,18 @@ require_once('includes/getconfig.php');
 										{
 											exit("Email format invalid.");
 										}
-										$data = array($email, $pid);
-										$query = $db->prepare('INSERT INTO `orders`(`id`, `order_email`, `order_pid`, `order_status`) VALUES (NULL, ?, ?,"0")');
-										$query->execute($data);
-										echo "Thank you. We will be in touch within 24 hours with more information.";
-										unset($_POST);
+										if($email == filter_var($email, FILTER_SANITIZE_EMAIL))
+										{
+											$data = array($email, $pid);
+											$query = $db->prepare('INSERT INTO `orders`(`id`, `order_email`, `order_pid`, `order_status`) VALUES (NULL, ?, ?,"0")');
+											$query->execute($data);
+											echo "Thank you. We will be in touch within 24 hours with more information.";
+											unset($_POST);
+										}
+										else
+										{
+											echo "Please enter a valid email address.";
+										}
 									}
 								} else {
 									$query = $db->prepare('SELECT * FROM `product_info` WHERE `cat_id` = ? LIMIT 3');
