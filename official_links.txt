@@ -2,6 +2,7 @@ PortCTL
 
 ## Official Threads
 VPSBoard: https://vpsboard.com/topic/6348-portctl-systems-billing-software/
+Lowendtalk: http://lowendtalk.com/discussion/43839/portctl-open-source-billing-software
 
 ## Official Social Media
-Twitter: 
+Twitter: @IOTechCH
