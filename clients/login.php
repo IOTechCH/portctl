@@ -93,8 +93,8 @@ require_once('../includes/ipfunctions.php'); handleCFIPs();
             <h1>Login</h1>
             <p>
               <form method="POST" action="login_attempt.php">
-                Customer ID: <input type="text" name="cust_id"><br>
-                Password: <input type="password" name="password"><br>
+                Customer ID: <input type="text" class="form-control" name="cust_id" required><br>
+                Password: <input type="password" class="form-control" name="password" required><br>
                 <input type="submit" name="submit" value="Login" class="btn btn-primary">
               </form>
             </p>
